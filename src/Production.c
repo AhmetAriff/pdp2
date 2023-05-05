@@ -6,7 +6,7 @@ Production new_Production(){
     this->deleteProduction=&DeleteProduction;
     return this;
 }
-void DeleteProduvtion(const Production this){
+void DeleteProduction(const Production this){
     if(this==NULL) return;
     free(this);
 }

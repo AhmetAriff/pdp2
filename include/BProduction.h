@@ -11,7 +11,7 @@ typedef struct B_PRODUCTION* BProduction;
 
 BProduction new_BProduction();
 int produce (const BProduction);
-void DeleteAProduction(const BProduction);
+void DeleteBProduction(const BProduction);
 
 
 #endif
