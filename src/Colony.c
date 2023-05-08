@@ -5,9 +5,10 @@ Colony new_Colony(int population){
     this->symbol=(char)generateRandomCharacter();
     this->population = population;
     this->foodStock = population*population;
-    this->aProduction=new_AProduction();
-    this->aTactic=new_Atactic();
+    this->production=new_AProduction()->super;
+    this->tactic=new_Atactic()->super;
     this->deleteColony = &DeleteColony;
+    
 }
 // private
 int generateRandomCharacter(){
@@ -18,7 +19,8 @@ int generateRandomCharacter(){
 }
 void DeleteColony(const Colony this){
     if(this==NULL) return;
-    free(this->aTactic);
-    free(this->aProduction);
+    free(this->tactic);
+    free(this->production);
     free(this);
 }
+

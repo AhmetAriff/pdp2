@@ -13,14 +13,16 @@ struct COLONY
     int foodStock;
     int win;
     int lose;
-    Atactic aTactic;
-    AProduction aProduction;
+    Tactic tactic;
+    Production production;
     void (*deleteColony)(struct COLONY*);
+   
 };
 
 typedef struct COLONY* Colony;
 
 Colony new_Colony(int);
 void DeleteColony(const Colony);
+
 
 #endif
