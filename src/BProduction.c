@@ -4,11 +4,11 @@ BProduction new_BProduction(){
     BProduction this;
     this = (BProduction) malloc(sizeof(struct B_PRODUCTION));
     this->super = new_Production();
-    this->super->produce = &produce;
+    this->super->produce = &Produce;
     this->deleteBProduction = &DeleteBProduction;
     return this;
 }
-int produce (const BProduction this){
+int Produce (){
     int randomNum;
     srand(time(NULL)); 
     randomNum = rand() % 10 + 1; 

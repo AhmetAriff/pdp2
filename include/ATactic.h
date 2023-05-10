@@ -11,7 +11,7 @@ struct A_TACTIC{
 typedef struct A_TACTIC* Atactic;
 
 Atactic new_Atactic();
-int attack(const Atactic);
+int attack();
 void DeleteAtactic(const Atactic);
 
 #endif

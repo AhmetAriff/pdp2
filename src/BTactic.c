@@ -4,11 +4,11 @@ Btactic new_Btactic(){
     Btactic this;
     this=(Btactic)malloc(sizeof(struct B_TACTIC));
     this->super=new_Tactic();
-    this->super->attack = &attack;
+    this->super->attack = &Attack;
     this->deleteBtactic = &DeleteBtactic;
     return this;
 }
-int attack(const Btactic this){
+int Attack(){
     int randomNum;
     srand(time(NULL)); 
     randomNum = rand() % 101; 

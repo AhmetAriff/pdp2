@@ -11,7 +11,7 @@ struct A_PRODUCTION
 typedef struct A_PRODUCTION* AProduction;
 
 AProduction new_AProduction();
-int produce (const AProduction);
+int produce ();
 void DeleteAProduction(const AProduction);
 
 #endif

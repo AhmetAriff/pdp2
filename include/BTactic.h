@@ -11,7 +11,7 @@ struct B_TACTIC{
 typedef struct B_TACTIC* Btactic;
 
 Btactic new_Btactic();
-int attack(const Btactic);
+int Attack();
 void DeleteBtactic(const Btactic);
 
 

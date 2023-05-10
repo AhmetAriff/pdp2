@@ -14,6 +14,7 @@ Colony new_Colony(int population){
 int generateRandomCharacter(){
     int symbol_min = 33; 
     int symbol_max = 126;
+    srand(time(NULL));
     int choosenCharacter = rand() % (symbol_max - symbol_min + 1) + symbol_min;
     return choosenCharacter;
 }

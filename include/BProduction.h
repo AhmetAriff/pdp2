@@ -10,7 +10,7 @@ struct B_PRODUCTION
 typedef struct B_PRODUCTION* BProduction;
 
 BProduction new_BProduction();
-int produce (const BProduction);
+int Produce ();
 void DeleteBProduction(const BProduction);
 
 

@@ -26,12 +26,20 @@ int main() {
       token = strtok(NULL, " ");
    }
 
+
+   int size = sizeof(colonies)/sizeof(colonies[0]);
+
+   printf("%d",size);      // dizi oluşturmada bir sıkıntı var  sizeı hep bir gösteriyor
+
+
+   for (int i = 0; i <size ; i++)
+   {
+      printf("The value of num is: %d \n", colonies[i]->population);   //diziye bölmede bir hata var
+   }
+   
+
+
    Game game = new_Game(colonies);
-
-
-
-
-
 
 
 

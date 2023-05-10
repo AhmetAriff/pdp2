@@ -8,6 +8,11 @@ Game new_Game(Colony* colonies){
     
 }
 void startGame(const Game this){
+
+    
+    //oyunu ana kodlarılın yazılacağı ksım 
+
+
     
 }
 void DeleteGame(const Game this){

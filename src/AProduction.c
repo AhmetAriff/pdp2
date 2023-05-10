@@ -8,7 +8,7 @@ AProduction new_AProduction(){
     this->deleteAProduction = &DeleteAProduction;
     return this;
 }
-int produce (const AProduction this){
+int produce (){
     int randomNum;
     srand(time(NULL)); 
     randomNum = rand() % 10 + 1; 

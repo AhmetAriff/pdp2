@@ -8,7 +8,7 @@ Atactic new_Atactic(){
     this->deleteAtactic = &DeleteAtactic;
     return this;
 }
-int attack(const Atactic this){
+int attack(){
     int randomNum;
     srand(time(NULL)); 
     randomNum = rand() % 1001; 
