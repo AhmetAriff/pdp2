@@ -20,6 +20,7 @@ struct COLONY
 };
 
 typedef struct COLONY* Colony;
+typedef enum Bool{false, true}boolean;
 
 Colony new_Colony(int);
 void DeleteColony(const Colony);

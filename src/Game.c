@@ -2,18 +2,63 @@
 Game new_Game(Colony* colonies){
     Game this;
     this->colonies=colonies;
+    this->numberOfColonies=sizeof(this->colonies)/sizeof(this->colonies[0]);
     this->tour=0;
     this->startGame = &startGame;
+    this->isItGameOver = &isItGameOver;
+    this->startTour= &startTour;
+    this->increasePopulation = &increasePopulation;
+    this->decreaseFoodStock = &decreaseFoodStock;
+    this->produceFood =&produceFood;
     this->deleteGame = &DeleteGame;
     
 }
 void startGame(const Game this){
+    while(!isItGameOver(this)){
 
+    startTour(this);
+    produceFood(this);
     
-    //oyunu ana kodlarılın yazılacağı ksım 
+        for(int i = 0;i<this->numberOfColonies-1;i++){
+            for(int j = i+1;j<this->numberOfColonies;j++){
+                // savas kodları yazılacak
+            }
+        }
 
-
-    
+    }
+}
+boolean isItGameOver(const Game this){
+    int count = 0;
+    for(int i = 0;i<this->numberOfColonies;i++){
+        if(this->colonies[i]->population<=0)
+            count++;
+    }
+    if(count == this->numberOfColonies-1)
+        return true;
+    else
+        return false;
+}
+void startTour(const Game this){
+    for(int i =0;i<this->numberOfColonies;i++){
+        increasePopulation(this->colonies[i]);
+        decreaseFoodStock(this->colonies[i]);
+    }
+    this->tour++;
+}
+void produceFood(const Game this){
+    for(int i =0;i<this->numberOfColonies;i++){
+        if(this->colonies[i]->population>=0){
+            this->colonies[i]->population+=this->colonies[i]->production->produce();
+        }
+    }
+}
+void increasePopulation(const Colony this){
+    if(this->population>=0)
+        this->population+=(this->population)/5;
+}
+void decreaseFoodStock(const Colony this){
+    if(this->population>=0)
+        this->foodStock-=(this->population)*2;
 }
 void DeleteGame(const Game this){
     if(this==NULL) return;

@@ -34,7 +34,7 @@ int main() {
 
    for (int i = 0; i <size ; i++)
    {
-      printf("The value of num is: %d \n", colonies[i]->population);   //diziye bölmede bir hata var
+      printf("The value of num is: %d", colonies[i]->population);   //diziye bölmede bir hata var
    }
    
 
