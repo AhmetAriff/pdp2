@@ -11,6 +11,8 @@ Game new_Game(Colony* colonies){
     this->decreaseFoodStock = &decreaseFoodStock;
     this->produceFood =&produceFood;
     this->deleteGame = &DeleteGame;
+    this->startWar =&startWar;
+    this->winWar =&winWar;
     
 }
 void startGame(const Game this){
@@ -21,10 +23,9 @@ void startGame(const Game this){
     
         for(int i = 0;i<this->numberOfColonies-1;i++){
             for(int j = i+1;j<this->numberOfColonies;j++){
-                // savas kodları yazılacak
+                startWar(this->colonies[i],this->colonies[j]);
             }
         }
-
     }
 }
 boolean isItGameOver(const Game this){
@@ -51,6 +52,30 @@ void produceFood(const Game this){
             this->colonies[i]->population+=this->colonies[i]->production->produce();
         }
     }
+}
+void startWar(const Colony left,const Colony right){
+    int leftDamage = left->tactic->attack();
+    int rightDamage = right->tactic->attack();
+
+    if(leftDamage>rightDamage){
+        int difference = leftDamage-rightDamage;
+        winWar(left,right,difference);
+    }
+    else if(rightDamage>leftDamage){
+        int difference = rightDamage-leftDamage;
+        winWar(right,left,difference);
+    }
+    else{
+        int difference = 0;
+        winWar(left,right,difference);
+    }
+}
+void winWar(const Colony winner,const Colony loser,int difference){
+    int percentage = (difference/1000)*100;
+    loser->population-=loser->population*(percentage/100);
+    int foodWillChange = loser->foodStock*(percentage/100);
+    winner->foodStock+=foodWillChange;
+    loser->foodStock-=foodWillChange;
 }
 void increasePopulation(const Colony this){
     if(this->population>=0)
