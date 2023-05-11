@@ -54,20 +54,23 @@ void produceFood(const Game this){
     }
 }
 void startWar(const Colony left,const Colony right){
-    int leftDamage = left->tactic->attack();
-    int rightDamage = right->tactic->attack();
 
-    if(leftDamage>rightDamage){
-        int difference = leftDamage-rightDamage;
-        winWar(left,right,difference);
-    }
-    else if(rightDamage>leftDamage){
-        int difference = rightDamage-leftDamage;
-        winWar(right,left,difference);
-    }
-    else{
-        int difference = 0;
-        winWar(left,right,difference);
+    if(left->population>0 && right->population>0){
+        int leftDamage = left->tactic->attack();
+        int rightDamage = right->tactic->attack();
+
+        if(leftDamage>rightDamage){
+            int difference = leftDamage-rightDamage;
+            winWar(left,right,difference);
+        }
+        else if(rightDamage>leftDamage){
+            int difference = rightDamage-leftDamage;
+            winWar(right,left,difference);
+        }
+        else{
+            int difference = 0;
+            winWar(left,right,difference);
+        }
     }
 }
 void winWar(const Colony winner,const Colony loser,int difference){

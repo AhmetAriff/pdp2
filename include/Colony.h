@@ -15,6 +15,7 @@ struct COLONY
     int lose;
     Tactic tactic;
     Production production;
+    char (*generateRandomCharacter)();
     void (*deleteColony)(struct COLONY*);
    
 };
@@ -24,6 +25,7 @@ typedef enum Bool{false, true}boolean;
 
 Colony new_Colony(int);
 void DeleteColony(const Colony);
+char generateRandomCharacter();
 
 
 #endif

@@ -29,6 +29,8 @@ int main() {
 
    int size = sizeof(colonies)/sizeof(colonies[0]);
 
+   printf("%c",colonies[0]->symbol);
+
    printf("%d",size);      // dizi oluşturmada bir sıkıntı var  sizeı hep bir gösteriyor
 
 

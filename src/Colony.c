@@ -2,7 +2,8 @@
 Colony new_Colony(int population){
     Colony this;
     this = (Colony)malloc(sizeof(struct COLONY));
-    this->symbol=(char)generateRandomCharacter();
+    this->generateRandomCharacter=&generateRandomCharacter;
+    this->symbol=generateRandomCharacter();
     this->population = population;
     this->foodStock = population*population;
     this->production=new_AProduction()->super;
@@ -11,11 +12,12 @@ Colony new_Colony(int population){
     
 }
 // private
-int generateRandomCharacter(){
+char generateRandomCharacter(){
     int symbol_min = 33; 
     int symbol_max = 126;
     srand(time(NULL));
-    int choosenCharacter = rand() % (symbol_max - symbol_min + 1) + symbol_min;
+    int symbol = rand() % (symbol_max - symbol_min + 1) + symbol_min;
+    char choosenCharacter = (char)symbol;
     return choosenCharacter;
 }
 void DeleteColony(const Colony this){
