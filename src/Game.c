@@ -2,7 +2,7 @@
 Game new_Game(Colony* colonies){
     Game this;
     this->colonies=colonies;
-    this->numberOfColonies=sizeof(this->colonies)/sizeof(this->colonies[0]);
+    this->numberOfColonies=sizeof(colonies)/sizeof(colonies[0]);
     this->tour=0;
     this->startGame = &startGame;
     this->isItGameOver = &isItGameOver;

@@ -15,7 +15,8 @@ int main() {
       }
    }
 
-   colonies = (Colony*) malloc((count+1) * sizeof(struct COLONY));
+
+   colonies = (Colony*) malloc((count+1) * sizeof(struct COLONY*));
    int i =0;
    char* token = strtok(str, " ");
    while (token != NULL) {
@@ -23,25 +24,28 @@ int main() {
       Colony colony = new_Colony(population);
       colonies[i]=colony;
       i++;
+      printf("%c  ",colonies[i]->symbol);
       token = strtok(NULL, " ");
    }
 
 
    int size = sizeof(colonies)/sizeof(colonies[0]);
-
-   printf("%c",colonies[0]->symbol);
+   
 
    printf("%d",size);      // dizi oluşturmada bir sıkıntı var  sizeı hep bir gösteriyor
 
 
-   for (int i = 0; i <size ; i++)
+   /* for (int i = 0; i <size ; i++)
    {
       printf("The value of num is: %d", colonies[i]->population);   //diziye bölmede bir hata var
-   }
+   } */
+
+   Game game = new_Game(colonies);
+   game->startGame(game);
    
 
 
-   Game game = new_Game(colonies);
+   
 
 
 
