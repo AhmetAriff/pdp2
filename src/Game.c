@@ -1,8 +1,8 @@
 #include"Game.h"
-Game new_Game(Colony* colonies){
+Game new_Game(Colony* colonies,int numberOfColonies){
     Game this;
     this->colonies=colonies;
-    this->numberOfColonies=sizeof(colonies)/sizeof(colonies[0]);
+    this->numberOfColonies=numberOfColonies;
     this->tour=0;
     this->startGame = &startGame;
     this->isItGameOver = &isItGameOver;
@@ -13,13 +13,21 @@ Game new_Game(Colony* colonies){
     this->deleteGame = &DeleteGame;
     this->startWar =&startWar;
     this->winWar =&winWar;
+    return this;
     
 }
-void startGame(const Game this){
+void startGame(Game this){
+
+    printf("\n");
+        printf("wsagsgsag");
+        printf("\n");
     while(!isItGameOver(this)){
 
+        
     startTour(this);
     produceFood(this);
+
+    
     
         for(int i = 0;i<this->numberOfColonies-1;i++){
             for(int j = i+1;j<this->numberOfColonies;j++){
@@ -32,12 +40,14 @@ boolean isItGameOver(const Game this){
     int count = 0;
     for(int i = 0;i<this->numberOfColonies;i++){
         if(this->colonies[i]->population<=0)
+        {
             count++;
+        } 
     }
     if(count == this->numberOfColonies-1)
-        return true;
+        {return true;}
     else
-        return false;
+        {return false;}
 }
 void startTour(const Game this){
     for(int i =0;i<this->numberOfColonies;i++){

@@ -3,8 +3,8 @@
 #include"ATactic.h"
 #include"AProduction.h"
 #include"time.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include"stdio.h"
+#include"stdlib.h"
 
 struct COLONY
 {
@@ -15,7 +15,7 @@ struct COLONY
     int lose;
     Tactic tactic;
     Production production;
-    char (*generateRandomCharacter)();
+    int (*generateRandomCharacter)();
     void (*deleteColony)(struct COLONY*);
    
 };
@@ -25,7 +25,7 @@ typedef enum Bool{false, true}boolean;
 
 Colony new_Colony(int);
 void DeleteColony(const Colony);
-char generateRandomCharacter();
+int generateRandomCharacter();
 
 
 #endif

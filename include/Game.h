@@ -24,7 +24,7 @@ struct GAME
 typedef struct GAME* Game;
 
 
-Game new_Game(Colony*);//colony dizisi alıcak
+Game new_Game(Colony* colonies,int numberOfColonies);//colony dizisi alıcak
 void DeleteGame(const Game);
 void startGame(const Game);
 boolean isItGameOver (const Game);

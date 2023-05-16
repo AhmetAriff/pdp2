@@ -1,54 +1,75 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include  <time.h>
 #include "Game.h"
 #include"Colony.h"
 int main() {
 
-   Colony* colonies;
-   int count =0;
-   char str[100];
-   fgets(str, 100, stdin);
-   int len = strlen(str);
+    srand(time(NULL));
+   
+    char input[100];
+    Colony* colonies = NULL;
+    int size = 0;
 
-   for(int i=0; i<len; i++) {
-      if(str[i] == ' ') {
-         count++; // Boşluk karakteri bulunca sayacı artırın
-      }
-   }
+    // Kullanıcıdan boşluklu sayı dizisini al
+    printf("Boşluklu sayı dizisini girin: ");
+    fgets(input, 100, stdin);
+
+    // Dizi boyutunu hesapla
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (input[i] == ' ') {
+            size++;
+        }
+    }
+    size++; // Son elemanı da hesaba kat
+
+    printf("%d",size);
+    printf("\n");
+
+    
+    colonies = (Colony*) malloc(size * sizeof(struct COLONY*));
+
+    printf("%p",colonies);
+    printf("\n");
 
 
-   colonies = (Colony*) malloc((count+1) * sizeof(struct COLONY*));
-   int i =0;
-   char* token = strtok(str, " ");
-   while (token != NULL) {
+    // Diziye elemanları ata
+    char *token = strtok(input, " ");
+    int i = 0;
+    while (token != NULL) {
       int population = atoi(token);
       Colony colony = new_Colony(population);
-      colonies[i]=colony;
-      i++;
-      printf("%c  ",colonies[i]->symbol);
+      colonies[i++] = colony; 
       token = strtok(NULL, " ");
-   }
+    }
+
+  
+
+    for(int i =0;i<size;i++){
+
+      printf("%c", colonies[i]->symbol); 
+      printf("\n");
+      printf("%d", colonies[i]->population); 
+      printf("\n");
+      printf("%d", colonies[i]->foodStock); 
+      printf("\n");
+    }
+
+  printf("%d",colonies);
+
+     Game game = new_Game(colonies,size);
+     printf("%d",game->numberOfColonies);
+      printf("\n");
+       printf("%d",game->tour);
+      printf("\n");
 
 
-   int size = sizeof(colonies)/sizeof(colonies[0]);
-   
+     
 
-   printf("%d",size);      // dizi oluşturmada bir sıkıntı var  sizeı hep bir gösteriyor
+     printf("%d",game->numberOfColonies);
+     
 
-
-   /* for (int i = 0; i <size ; i++)
-   {
-      printf("The value of num is: %d", colonies[i]->population);   //diziye bölmede bir hata var
-   } */
-
-   Game game = new_Game(colonies);
-   game->startGame(game);
-   
-
-
-   
-
-
-
+     
 
    free(colonies);// colony dizisinin iadesi en son yapılacak
    return 0;
