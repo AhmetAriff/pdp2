@@ -27,16 +27,16 @@ typedef struct GAME* Game;
 
 
 Game new_Game(Colony* colonies,int numberOfColonies);//colony dizisi alıcak
-void DeleteGame(const Game);
-void startGame(const Game);
-boolean isItGameOver (const Game);
-void startTour (const Game);
-void increasePopulation (const Colony);
-void decreaseFoodStock (const Colony);
-void produceFood (const Game);
-void winWar(const Colony,const Colony,int difference);
-void startWar(const Colony,const Colony);
-void toString (const Game);
+void DeleteGame( Game);
+void startGame( Game);
+boolean isItGameOver ( Game);
+void startTour ( Game);
+void increasePopulation ( Colony);
+void decreaseFoodStock ( Colony);
+void produceFood ( Game);
+void winWar( Colony, Colony,int difference);
+void startWar( Colony, Colony);
+void toString ( Game);
 void clearConsole();
 
 #endif

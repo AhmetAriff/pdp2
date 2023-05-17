@@ -39,7 +39,9 @@ int main() {
   
 
      Game game = new_Game(colonies,size);
-     game->startGame(game);
+
+  printf("%d",game->colonies[2]->production->produce());   
+    //  game->startGame(game);
 
 
    free(colonies);// colony dizisinin iadesi en son yapılacak

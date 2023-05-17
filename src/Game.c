@@ -31,14 +31,16 @@ void startGame(Game this){
                 startWar(this->colonies[i],this->colonies[j]);
             }
         }
+        this->toString(this);
+        sleep(2);
+        this->clearConsole();
     }
-    this->toString(this);
-    this->clearConsole();
+    
 }
-boolean isItGameOver(const Game this){
+boolean isItGameOver( Game this){
     int count = 0;
     for(int i = 0;i<this->numberOfColonies;i++){
-        if(this->colonies[i]->population<=0)
+        if(this->colonies[i]->population<=0  || this->colonies[i]->foodStock<=0)
         {
             count++;
         } 
@@ -48,23 +50,23 @@ boolean isItGameOver(const Game this){
     else
         {return false;}
 }
-void startTour(const Game this){
+void startTour( Game this){
     for(int i =0;i<this->numberOfColonies;i++){
         increasePopulation(this->colonies[i]);
         decreaseFoodStock(this->colonies[i]);
     }
     this->tour++;
 }
-void produceFood(const Game this){
+void produceFood( Game this){
     for(int i =0;i<this->numberOfColonies;i++){
-        if(this->colonies[i]->population>=0){
-            this->colonies[i]->population+=this->colonies[i]->production->produce();
+        if(this->colonies[i]->population>0 && this->colonies[i]->foodStock>0){
+            this->colonies[i]->foodStock+=this->colonies[i]->production->produce();
         }
     }
 }
-void startWar(const Colony left,const Colony right){
+void startWar( Colony left, Colony right){
 
-    if(left->population>0 && right->population>0){
+    if(left->population>0 && right->population>0 && left->foodStock>0 && right->foodStock>0){
         int leftDamage = left->tactic->attack();
         int rightDamage = right->tactic->attack();
 
@@ -82,22 +84,28 @@ void startWar(const Colony left,const Colony right){
         }
     }
 }
-void winWar(const Colony winner,const Colony loser,int difference){
+void winWar( Colony winner, Colony loser,int difference){
     int percentage = (difference/1000)*100;
     loser->population-=loser->population*(percentage/100);
     int foodWillChange = loser->foodStock*(percentage/100);
     winner->foodStock+=foodWillChange;
+    winner->win++;
     loser->foodStock-=foodWillChange;
+    loser->lose++;
 }
-void increasePopulation(const Colony this){
-    if(this->population>=0)
+void increasePopulation( Colony this){
+    if(this->population>0 && this->foodStock>0)
+    {
         this->population+=(this->population)/5;
+    }  
 }
-void decreaseFoodStock(const Colony this){
-    if(this->population>=0)
+void decreaseFoodStock( Colony this){
+    if(this->population>0 && this->foodStock>0)
+    {
         this->foodStock-=(this->population)*2;
+    }
 }
-void toString(const Game this){
+void toString( Game this){
     printf("-------------------------------------------------------- \n Tour : %d \n Colony \tPopulation \t FoodStock \t Win \t Lose \n",this->tour);
     for(int i =0;i<this->numberOfColonies;i++){
         printf("  %c \t \t    %d \t \t      %d \t  %d \t  %d \n",this->colonies[i]->symbol,this->colonies[i]->population,this->colonies[i]->foodStock,this->colonies[i]->win,this->colonies[i]->lose);
@@ -110,7 +118,7 @@ void clearConsole(){
         system("clear");
     #endif
 }
-void DeleteGame(const Game this){
+void DeleteGame( Game this){
     if(this==NULL) return;
     free(this);
 }
