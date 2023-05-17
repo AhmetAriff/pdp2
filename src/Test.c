@@ -36,12 +36,8 @@ int main() {
       token = strtok(NULL, " ");
     }
 
-  
-
-     Game game = new_Game(colonies,size);
-
-  printf("%d",game->colonies[2]->production->produce());   
-    //  game->startGame(game);
+    Game game = new_Game(colonies,size);
+    game->startGame(game);
 
 
    free(colonies);// colony dizisinin iadesi en son yapılacak

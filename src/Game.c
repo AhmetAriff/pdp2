@@ -45,7 +45,7 @@ boolean isItGameOver( Game this){
             count++;
         } 
     }
-    if(count == this->numberOfColonies-1)
+    if(count >= this->numberOfColonies-1)
         {return true;}
     else
         {return false;}
@@ -108,7 +108,7 @@ void decreaseFoodStock( Colony this){
 void toString( Game this){
     printf("-------------------------------------------------------- \n Tour : %d \n Colony \tPopulation \t FoodStock \t Win \t Lose \n",this->tour);
     for(int i =0;i<this->numberOfColonies;i++){
-        printf("  %c \t \t    %d \t \t      %d \t  %d \t  %d \n",this->colonies[i]->symbol,this->colonies[i]->population,this->colonies[i]->foodStock,this->colonies[i]->win,this->colonies[i]->lose);
+        printf("  %c\t\t  %5d \t    %5d \t%3d \t%3d \n",this->colonies[i]->symbol,this->colonies[i]->population,this->colonies[i]->foodStock,this->colonies[i]->win,this->colonies[i]->lose);
     }
 }
 void clearConsole(){
