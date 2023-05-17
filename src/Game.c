@@ -1,6 +1,7 @@
 #include"Game.h"
 Game new_Game(Colony* colonies,int numberOfColonies){
     Game this;
+    this = (Game)malloc(sizeof(struct GAME));
     this->colonies=colonies;
     this->numberOfColonies=numberOfColonies;
     this->tour=0;
@@ -13,21 +14,17 @@ Game new_Game(Colony* colonies,int numberOfColonies){
     this->deleteGame = &DeleteGame;
     this->startWar =&startWar;
     this->winWar =&winWar;
+    this->toString=&toString;
+    this->clearConsole=&clearConsole;
     return this;
     
 }
 void startGame(Game this){
 
-    printf("\n");
-        printf("wsagsgsag");
-        printf("\n");
     while(!isItGameOver(this)){
 
-        
     startTour(this);
     produceFood(this);
-
-    
     
         for(int i = 0;i<this->numberOfColonies-1;i++){
             for(int j = i+1;j<this->numberOfColonies;j++){
@@ -35,6 +32,8 @@ void startGame(Game this){
             }
         }
     }
+    this->toString(this);
+    this->clearConsole();
 }
 boolean isItGameOver(const Game this){
     int count = 0;
@@ -97,6 +96,19 @@ void increasePopulation(const Colony this){
 void decreaseFoodStock(const Colony this){
     if(this->population>=0)
         this->foodStock-=(this->population)*2;
+}
+void toString(const Game this){
+    printf("-------------------------------------------------------- \n Tour : %d \n Colony \tPopulation \t FoodStock \t Win \t Lose \n",this->tour);
+    for(int i =0;i<this->numberOfColonies;i++){
+        printf("  %c \t \t    %d \t \t      %d \t  %d \t  %d \n",this->colonies[i]->symbol,this->colonies[i]->population,this->colonies[i]->foodStock,this->colonies[i]->win,this->colonies[i]->lose);
+    }
+}
+void clearConsole(){
+    #ifdef _WIN32  // for Windows
+        system("cls");
+    #else  // for Linux and macOS
+        system("clear");
+    #endif
 }
 void DeleteGame(const Game this){
     if(this==NULL) return;

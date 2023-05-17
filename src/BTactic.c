@@ -10,7 +10,6 @@ Btactic new_Btactic(){
 }
 int Attack(){
     int randomNum;
-    srand(time(NULL)); 
     randomNum = rand() % 101; 
     return randomNum;
 }

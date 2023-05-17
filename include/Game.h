@@ -20,6 +20,8 @@ struct GAME
     void(*produceFood)(struct GAME*);
     void(*winWar)(struct COLONY*,struct COLONY*,int difference);
     void(*startWar)(struct COLONY*,struct COLONY*);
+    void(*toString)(struct GAME*);
+    void(*clearConsole)();
 };
 typedef struct GAME* Game;
 
@@ -34,5 +36,7 @@ void decreaseFoodStock (const Colony);
 void produceFood (const Game);
 void winWar(const Colony,const Colony,int difference);
 void startWar(const Colony,const Colony);
+void toString (const Game);
+void clearConsole();
 
 #endif

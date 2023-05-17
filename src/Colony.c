@@ -9,6 +9,8 @@ Colony new_Colony(int population){
     this->production=new_AProduction()->super;
     this->tactic=new_Atactic()->super;
     this->deleteColony = &DeleteColony;
+    this->win=0;
+    this->lose=0;
     return this;
     
 }

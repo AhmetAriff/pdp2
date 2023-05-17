@@ -10,7 +10,6 @@ Atactic new_Atactic(){
 }
 int attack(){
     int randomNum;
-    srand(time(NULL)); 
     randomNum = rand() % 1001; 
     return randomNum;
 }

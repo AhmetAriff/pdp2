@@ -23,15 +23,8 @@ int main() {
     }
     size++; // Son elemanı da hesaba kat
 
-    printf("%d",size);
-    printf("\n");
-
     
     colonies = (Colony*) malloc(size * sizeof(struct COLONY*));
-
-    printf("%p",colonies);
-    printf("\n");
-
 
     // Diziye elemanları ata
     char *token = strtok(input, " ");
@@ -45,31 +38,9 @@ int main() {
 
   
 
-    for(int i =0;i<size;i++){
-
-      printf("%c", colonies[i]->symbol); 
-      printf("\n");
-      printf("%d", colonies[i]->population); 
-      printf("\n");
-      printf("%d", colonies[i]->foodStock); 
-      printf("\n");
-    }
-
-  printf("%d",colonies);
-
      Game game = new_Game(colonies,size);
-     printf("%d",game->numberOfColonies);
-      printf("\n");
-       printf("%d",game->tour);
-      printf("\n");
+     game->startGame(game);
 
-
-     
-
-     printf("%d",game->numberOfColonies);
-     
-
-     
 
    free(colonies);// colony dizisinin iadesi en son yapılacak
    return 0;

@@ -10,7 +10,6 @@ BProduction new_BProduction(){
 }
 int Produce (){
     int randomNum;
-    srand(time(NULL)); 
     randomNum = rand() % 10 + 1; 
     return randomNum;
 }
