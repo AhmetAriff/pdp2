@@ -134,5 +134,9 @@ void clearConsole(){
 }
 void DeleteGame( Game this){
     if(this==NULL) return;
+    for(int i =0;i<this->numberOfColonies;i++){
+        this->colonies[i]->deleteColony(this->colonies[i]);
+    }
+    free(this->colonies);
     free(this);
 }
