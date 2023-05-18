@@ -31,9 +31,9 @@ void startGame(Game this){
                 startWar(this->colonies[i],this->colonies[j]);
             }
         }
+        this->clearConsole();
         this->toString(this);
         sleep(2);
-        this->clearConsole();
     }
     
 }
@@ -60,7 +60,7 @@ void startTour( Game this){
 void produceFood( Game this){
     for(int i =0;i<this->numberOfColonies;i++){
         if(this->colonies[i]->population>0 && this->colonies[i]->foodStock>0){
-            this->colonies[i]->foodStock+=this->colonies[i]->production->produce();
+            this->colonies[i]->foodStock+=(this->colonies[i]->production->produce());
         }
     }
 }
@@ -79,14 +79,22 @@ void startWar( Colony left, Colony right){
             winWar(right,left,difference);
         }
         else{
-            int difference = 0;
-            winWar(left,right,difference);
+            if(left->population>right->population){
+                winWar(left,right,0);
+            }
+            else if(right->population>left->population){
+                winWar(right,left,0);
+            }
+            else{
+                winWar(left,right,0);
+            }
         }
+           
     }
 }
 void winWar( Colony winner, Colony loser,int difference){
     int percentage = (difference/1000)*100;
-    loser->population-=loser->population*(percentage/100);
+    loser->population-=(loser->population*(percentage/100));
     int foodWillChange = loser->foodStock*(percentage/100);
     winner->foodStock+=foodWillChange;
     winner->win++;
@@ -96,20 +104,26 @@ void winWar( Colony winner, Colony loser,int difference){
 void increasePopulation( Colony this){
     if(this->population>0 && this->foodStock>0)
     {
-        this->population+=(this->population)/5;
+        this->population+=((this->population)/5);
     }  
 }
 void decreaseFoodStock( Colony this){
     if(this->population>0 && this->foodStock>0)
     {
-        this->foodStock-=(this->population)*2;
+        this->foodStock-=((this->population)*2);
     }
 }
 void toString( Game this){
-    printf("-------------------------------------------------------- \n Tour : %d \n Colony \tPopulation \t FoodStock \t Win \t Lose \n",this->tour);
+    printf("----------------------------------------------------------------- \n Tour : %d \n Colony \tPopulation \t FoodStock \t Win \t Lose \n",this->tour);
     for(int i =0;i<this->numberOfColonies;i++){
-        printf("  %c\t\t  %5d \t    %5d \t%3d \t%3d \n",this->colonies[i]->symbol,this->colonies[i]->population,this->colonies[i]->foodStock,this->colonies[i]->win,this->colonies[i]->lose);
+        if(this->colonies[i]->population<=0|| this->colonies[i]->foodStock<=0){
+            printf("  %c\t\t  %5c \t    %5c \t%3c \t%3c \n",this->colonies[i]->symbol,'-','-','-','-');
+        }
+        else{
+            printf("  %c\t\t  %5d \t    %5d \t%3d \t%3d \n",this->colonies[i]->symbol,this->colonies[i]->population,this->colonies[i]->foodStock,this->colonies[i]->win,this->colonies[i]->lose);
+        }
     }
+    printf("------------------------------------------------------------------");
 }
 void clearConsole(){
     #ifdef _WIN32  // for Windows

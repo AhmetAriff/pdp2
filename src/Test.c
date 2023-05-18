@@ -38,6 +38,7 @@ int main() {
 
     Game game = new_Game(colonies,size);
     game->startGame(game);
+    game->deleteGame(game);
 
 
    free(colonies);// colony dizisinin iadesi en son yapılacak
