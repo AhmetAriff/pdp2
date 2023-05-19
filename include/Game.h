@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Colony.h"
+#include <unistd.h>
 
 struct GAME
 {

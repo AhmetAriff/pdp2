@@ -1,5 +1,4 @@
 #include"AProduction.h"
-
 AProduction new_AProduction(){
     AProduction this;
     this = (AProduction) malloc(sizeof(struct A_PRODUCTION));
@@ -17,5 +16,4 @@ void DeleteAProduction(const AProduction this){
     if(this==NULL) return;
     this->super->deleteProduction(this->super);
     free(this);
-
 }

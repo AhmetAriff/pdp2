@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include  <time.h>
+#include <time.h>
 #include "Game.h"
 #include"Colony.h"
 int main() {
 
     srand(time(NULL));
-   
     char input[100];
     Colony* colonies = NULL;
     int size = 0;
 
     // Kullanıcıdan boşluklu sayı dizisini al
-    printf("Boşluklu sayı dizisini girin: ");
+    printf("Enter Populations: ");
     fgets(input, 100, stdin);
 
     // Dizi boyutunu hesapla
@@ -36,8 +35,9 @@ int main() {
       token = strtok(NULL, " ");
     }
 
-    Game game = new_Game(colonies,size);
+     Game game = new_Game(colonies,size);
     game->startGame(game);
-    game->deleteGame(game);
+    game->deleteGame(game); 
+
    return 0;
 }

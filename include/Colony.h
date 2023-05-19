@@ -2,7 +2,8 @@
 #define COLONY_H
 #include"ATactic.h"
 #include"AProduction.h"
-#include"time.h"
+#include"BTactic.h"
+#include"BProduction.h"
 #include"stdio.h"
 #include"stdlib.h"
 

@@ -6,13 +6,12 @@ Colony new_Colony(int population){
     this->symbol=this->generateRandomCharacter();
     this->population = population;
     this->foodStock = population*population;
-    this->production=new_AProduction()->super;
+    this->production=new_BProduction()->super;
     this->tactic=new_Atactic()->super;
     this->deleteColony = &DeleteColony;
     this->win=0;
     this->lose=0;
     return this;
-    
 }
 int generateRandomCharacter(){
     int symbol_min = 33; 
@@ -22,8 +21,8 @@ int generateRandomCharacter(){
 }
 void DeleteColony(const Colony this){
     if(this==NULL) return;
-    free(this->tactic);
-    free(this->production);
+    this->tactic->deleteTactic(this->tactic);
+    this->production->deleteProduction(this->production);
     free(this);
 }
 

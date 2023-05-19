@@ -20,20 +20,18 @@ Game new_Game(Colony* colonies,int numberOfColonies){
     
 }
 void startGame(Game this){
-
-    while(!isItGameOver(this)){
-
-    startTour(this);
-    produceFood(this);
+    while(!this->isItGameOver(this)){
+    this->startTour(this);
+    this->produceFood(this);
     
         for(int i = 0;i<this->numberOfColonies-1;i++){
             for(int j = i+1;j<this->numberOfColonies;j++){
-                startWar(this->colonies[i],this->colonies[j]);
+                this->startWar(this->colonies[i],this->colonies[j]);
             }
         }
         this->clearConsole();
         this->toString(this);
-        sleep(2);
+        sleep(1);
     }
     
 }
@@ -52,8 +50,8 @@ boolean isItGameOver( Game this){
 }
 void startTour( Game this){
     for(int i =0;i<this->numberOfColonies;i++){
-        increasePopulation(this->colonies[i]);
-        decreaseFoodStock(this->colonies[i]);
+        this->increasePopulation(this->colonies[i]);
+        this->decreaseFoodStock(this->colonies[i]);
     }
     this->tour++;
 }
@@ -80,16 +78,21 @@ void startWar( Colony left, Colony right){
         }
         else{
             if(left->population>right->population){
-                winWar(left,right,0);
+                winWar(left,right,100);
             }
             else if(right->population>left->population){
-                winWar(right,left,0);
+                winWar(right,left,100);
             }
             else{
-                winWar(left,right,0);
+                int randomWinner = rand() % 2 + 1;
+                if(randomWinner==1){
+                    winWar(left,right,100);
+                }
+                else{
+                    winWar(right,left,100);
+                }
             }
         }
-           
     }
 }
 void winWar( Colony winner, Colony loser,int difference){

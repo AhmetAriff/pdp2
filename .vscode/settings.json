@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "colony.h": "c"
+    "colony.h": "c",
+    "atactic.h": "c"
   }
 }

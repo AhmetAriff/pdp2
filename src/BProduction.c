@@ -1,5 +1,4 @@
 #include"BProduction.h"
-
 BProduction new_BProduction(){
     BProduction this;
     this = (BProduction) malloc(sizeof(struct B_PRODUCTION));
