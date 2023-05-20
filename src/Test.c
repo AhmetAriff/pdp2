@@ -35,7 +35,7 @@ int main() {
       token = strtok(NULL, " ");
     }
 
-     Game game = new_Game(colonies,size);
+    Game game = new_Game(colonies,size);
     game->startGame(game);
     game->deleteGame(game); 
 

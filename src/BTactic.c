@@ -10,7 +10,7 @@ Btactic new_Btactic(){
 }
 int Attack(){
     int randomNum;
-    randomNum = rand() % 101; 
+    randomNum = rand() % 1001; 
     return randomNum;
 }
 void DeleteBtactic(const Btactic this){

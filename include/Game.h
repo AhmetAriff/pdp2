@@ -7,6 +7,7 @@
 #include "Colony.h"
 #include <unistd.h>
 
+
 struct GAME
 {
     int tour;
@@ -36,7 +37,7 @@ void increasePopulation ( Colony);
 void decreaseFoodStock ( Colony);
 void produceFood ( Game);
 void winWar( Colony, Colony,int difference);
-void startWar( Colony, Colony);
+void startWar( Colony left, Colony right);
 void toString ( Game);
 void clearConsole();
 

@@ -78,13 +78,13 @@ void startWar( Colony left, Colony right){
         }
         else{
             if(left->population>right->population){
-                winWar(left,right,100);
+                winWar(left,right,100);//eşit değer dönmesi haline popülasyonu fazla olan kazanır 100 olarak random fark değeri verdim.
             }
             else if(right->population>left->population){
                 winWar(right,left,100);
             }
             else{
-                int randomWinner = rand() % 2 + 1;
+                int randomWinner = rand() % 2 + 1;// popülasyon sayıları da  eşitse zar atılır.
                 if(randomWinner==1){
                     winWar(left,right,100);
                 }
@@ -96,9 +96,9 @@ void startWar( Colony left, Colony right){
     }
 }
 void winWar( Colony winner, Colony loser,int difference){
-    int percentage = (difference/1000)*100;
-    loser->population-=(loser->population*(percentage/100));
-    int foodWillChange = loser->foodStock*(percentage/100);
+    int percentage = (difference*100)/1000;
+    loser->population-=(loser->population/100*percentage);
+    int foodWillChange = (loser->foodStock/100*percentage);
     winner->foodStock+=foodWillChange;
     winner->win++;
     loser->foodStock-=foodWillChange;
