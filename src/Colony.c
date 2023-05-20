@@ -2,8 +2,7 @@
 Colony new_Colony(int population){
     Colony this;
     this = (Colony)malloc(sizeof(struct COLONY));
-    this->generateRandomCharacter=&generateRandomCharacter;
-    this->symbol=this->generateRandomCharacter();
+    this->symbol=generateRandomCharacter();
     this->population = population;
     this->foodStock = population*population;
     this->production=new_BProduction()->super;

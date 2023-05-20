@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Colony.h"
-#include <unistd.h>
 
 
 struct GAME
@@ -15,15 +14,6 @@ struct GAME
     int numberOfColonies;
     void(*startGame)(struct GAME*);
     void(*deleteGame)(struct GAME*);
-    boolean(*isItGameOver)(struct GAME*);
-    void(*startTour)(struct GAME*);
-    void(*increasePopulation)(struct COLONY*);
-    void(*decreaseFoodStock)(struct COLONY*);
-    void(*produceFood)(struct GAME*);
-    void(*winWar)(struct COLONY*,struct COLONY*,int difference);
-    void(*startWar)(struct COLONY*,struct COLONY*);
-    void(*toString)(struct GAME*);
-    void(*clearConsole)();
 };
 typedef struct GAME* Game;
 

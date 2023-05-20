@@ -16,7 +16,6 @@ struct COLONY
     int lose;
     Tactic tactic;
     Production production;
-    int (*generateRandomCharacter)();
     void (*deleteColony)(struct COLONY*);
    
 };
